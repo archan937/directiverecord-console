@@ -32,13 +32,6 @@ namespace :db do
   end
 
   task :dump do
-    puts "Dumping database schema ..."
-
-    ActiveRecord::Base.establish_connection config
-    File.open("#{db}/schema.rb", "w:utf-8") do |file|
-      ActiveRecord::SchemaDumper.dump ActiveRecord::Base.connection, file
-    end
-
     puts "Dumping database SQL ..."
 
     `#{
