@@ -25,7 +25,7 @@ The console is a Pry console in which you can play with `DirectiveRecord` using 
   Loading DirectiveRecord console (0.1.0)
 ```
 ```ruby
-  [1] pry(main)> puts Customer.to_qry("id, name, COUNT(orders.id) AS order_count, GROUP_CONCAT(DISTINCT tags.name) AS tags", :group_by => "id", :order_by => "COUNT(DISTINCT tags.id) DESC", :limit => 5)
+  [1] pry(main)> puts Customer.to_qry("id", "name", "COUNT(orders.id) AS order_count", "GROUP_CONCAT(DISTINCT tags.name) AS tags", :group_by => "id", :order_by => "COUNT(DISTINCT tags.id) DESC", :limit => 5)
 ```
 ```sql
   SELECT `c`.id, `c`.name, COUNT(`orders`.id) AS order_count, GROUP_CONCAT(DISTINCT `tags`.name) AS tags
@@ -38,7 +38,7 @@ The console is a Pry console in which you can play with `DirectiveRecord` using 
   LIMIT 5
 ```
 ```ruby
-  [2] pry(main)> Customer.qry("id, name, COUNT(orders.id) AS order_count, GROUP_CONCAT(DISTINCT tags.name) AS tags", :group_by => "id", :order_by => "COUNT(DISTINCT tags.id) DESC", :limit => 5)
+  [2] pry(main)> Customer.qry("id", "name", "COUNT(orders.id) AS order_count", "GROUP_CONCAT(DISTINCT tags.name) AS tags", :group_by => "id", :order_by => "COUNT(DISTINCT tags.id) DESC", :limit => 5)
   => [[119, "La Rochelle Gifts", 8, "gifts,posters"], [112, "Signal Gift Stores", 3, "gifts"], [124, "Mini Gifts Distributors Ltd.", 17, "gifts"], [103, "Atelier graphique", 3, nil], [114, "Australian Collectors, Co.", 5, nil]]
 ```
 ```ruby
@@ -70,7 +70,7 @@ The console is a Pry console in which you can play with `DirectiveRecord` using 
   ORDER BY `tags`.id
 ```
 ```ruby
-  [6] pry(main)> puts Customer.to_qry("id, name, COUNT(orders.id) AS order_count", :where => "order_count > 3", :group_by => "id")
+  [6] pry(main)> puts Customer.to_qry("id", "name", "COUNT(orders.id) AS order_count", :where => "order_count > 3", :group_by => "id")
 ```
 ```sql
   SELECT `c`.id, `c`.name, COUNT(`orders`.id) AS order_count
@@ -81,7 +81,7 @@ The console is a Pry console in which you can play with `DirectiveRecord` using 
   ORDER BY `c`.id
 ```
 ```ruby
-  [7] pry(main)> Customer.qry("id, name, COUNT(orders.id) AS order_count", :where => "order_count > 3", :group_by => "id")
+  [7] pry(main)> Customer.qry("id", "name", "COUNT(orders.id) AS order_count", :where => "order_count > 3", :group_by => "id")
   => [[114, "Australian Collectors, Co.", 5],
    [119, "La Rochelle Gifts", 4],
    [121, "Baane Mini Imports", 4],
@@ -114,7 +114,7 @@ Check out the `DirectiveRecord` repository at [https://github.com/archan937/dire
 
 ### License
 
-Copyright (c) 2014 Paul Engel, released under the MIT License
+Copyright (c) 2015 Paul Engel, released under the MIT License
 
 http://github.com/archan937 – http://twitter.com/archan937 – http://gettopup.com – pm_engel@icloud.com
 
