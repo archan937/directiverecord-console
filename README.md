@@ -22,7 +22,7 @@ The console is a Pry console in which you can play with `DirectiveRecord` using 
 
 ```ruby
   $ script/console
-  Loading DirectiveRecord console (0.1.16)
+  Loading DirectiveRecord console (0.1.19)
 ```
 ```ruby
   [1] pry(main)> puts Customer.to_qry("id", "name", "COUNT(orders.id) AS order_count", "GROUP_CONCAT(DISTINCT tags.name) AS tags", :group_by => "id", :order_by => "COUNT(DISTINCT tags.id) DESC", :limit => 5)
